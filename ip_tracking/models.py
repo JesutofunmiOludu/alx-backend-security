@@ -20,3 +20,11 @@ class BlockedIP(models.Model):
     def __str__(self):
         
         return f"{self.ip_address} - {self.blocked_at}" 
+
+class SuspiciousIP(models.Model):
+    ip_address = models.GenericIPAddressField(protocol='both', unpack_ipv4=True)
+    reason = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.ip_address} ({self.reason})"
