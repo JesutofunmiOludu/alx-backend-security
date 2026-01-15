@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-wn=o^m*7+g5_gp#s=si+x5begw2t_mto5v(oeldsw55-c&r%5r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['testserver']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ip_tracking',
     'django_ip_geolocation',
+    'django_ratelimit',
 ]
 
 MIDDLEWARE = [
