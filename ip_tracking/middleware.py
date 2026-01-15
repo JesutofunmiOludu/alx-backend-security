@@ -1,5 +1,6 @@
-from ip_tracking.models import RequestLog
+from ip_tracking.models import RequestLog, BlockedIP
 import logging
+from django.http import HttpResponseForbidden
 
 logger = logging.getLogger(__name__)
 
@@ -13,6 +14,9 @@ class RequestLoggingMiddleware:
             ip_address = x_forwarded_for.split(',')[0]
         else:
             ip_address = request.META.get('REMOTE_ADDR')
+
+        if BlockedIP.objects.filter(ip_address=ip_address).exists():
+            return HttpResponseForbidden("Access Denied: Your IP is blocked.")
 
         RequestLog.objects.create(
             ip_address=ip_address,
