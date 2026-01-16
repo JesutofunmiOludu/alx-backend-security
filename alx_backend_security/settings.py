@@ -55,8 +55,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ip_tracking',
-    'django_ip_geolocation',
-    'django_ratelimit',
 ]
 
 MIDDLEWARE = [
@@ -92,6 +90,13 @@ WSGI_APPLICATION = 'alx_backend_security.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': BASE_DIR / 'django_cache',
+    }
+}
 
 DATABASES = {
     'default': {
